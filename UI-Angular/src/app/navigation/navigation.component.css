@@ -1,0 +1,42 @@
+.example-container{
+    height: 200px;
+}
+mat-toolbar{
+    background-color: #35495e;     
+    padding-left: 25px;;
+}
+ 
+mat-sidenav-container
+{
+    height: 600px !important; 
+}
+mat-nav-list{
+    background-color: #004445 !important;;
+    width: 200px !important;;
+    border-right: gray !important; ;
+    border-right-style: inset !important; ;
+    text-align: right !important;
+     height: 592px;;
+}
+.mat-list-item{
+    
+    color: white !important;
+   
+}
+a:hover{
+    background-color: white !important;
+    color: black !important;;
+}
+ 
+button{
+    margin-top: 10px;;
+
+}
+.mat-drawer-inner-container
+{
+    height: 600px !important; 
+}
+mat-sidenav
+{
+    min-height: 600px !important; 
+}

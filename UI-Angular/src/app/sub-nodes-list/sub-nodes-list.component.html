@@ -1,0 +1,164 @@
+<div style="direction: rtl; text-align: right;">
+  <div style="white-space:nowrap">
+    <label for="nodeId" class="col-sm-2 col-form-label"
+      >اختر الموزع/المجموعة</label
+    >
+    <select
+      class="custom-select d-block w-100"
+      placeholder="اختر الموزع/المجموعة"
+      id="nodeId"
+      [(ngModel)]="nodeId"
+      (ngModelChange)="onOptionsSelected()"
+      name="nodeId"
+    >
+      <option value="0">الكل</option>
+      <option *ngFor="let uNode of nodesList" [value]="uNode.nodeId">
+        {{ uNode.distributerName }}
+      </option>
+    </select>
+  </div>
+</div>
+<button
+  (click)="changeAddNewToggler()"
+  [hidden]="!AddNewToggler"
+  mat-mini-fab
+  color="primary"
+>
+  <mat-icon>filter_list</mat-icon>
+</button>
+
+<div
+  [hidden]="AddNewToggler"
+  class="row"
+  style="direction: rtl; text-align: right;margin-top:20px;padding: 20px;">
+  <mat-form-field class="example-form-field">
+    <mat-label>البحث بالاسم او رقم التليفون </mat-label>
+    <input matInput type="text" [(ngModel)]="searchFilterValue">
+    <button mat-button *ngIf="searchFilterValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchFilterValue=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+   
+  <button
+    (click)="changeAddNewToggler()"
+    [hidden]="AddNewToggler"
+    mat-mini-fab
+    color="warn" style="display: block; float: left !important;"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div style="margin-top: 70px; direction: rtl; text-align: right;width: 100%;">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>اسم العضو</th>
+        <th>المحمول</th>
+        <th>الرقم القومى</th>
+        <th>تاريخ الاشتراك</th>
+        <th>العنوان</th>
+        <th>نوع الباقة</th>
+        <th>ملاحظات</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let subNodeObj of subNodesList | subNodesFilterPipe:searchFilterValue">
+        <td>
+          <input
+            type="text"
+            class="form-control"
+            id="fullName"
+            name="fullName"
+            [(ngModel)]="subNodeObj.fullName"
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            class="form-control"
+            id="phone"
+            name="phone"
+            [(ngModel)]="subNodeObj.phone"
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            class="form-control"
+            id="nid"
+            name="nid"
+            [(ngModel)]="subNodeObj.nid"
+          />
+        </td>
+        <td>
+          <mat-form-field style="direction: ltr !important;text-align: right;">
+            <input
+              matInput
+              [matDatepicker]="picker"
+              name="startDate"
+              [(ngModel)]="subNodeObj.startDate"
+              placeholder="اختر تاريخ الاشتراك"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </td>
+        <td>
+          <input
+            type="text"
+            class="form-control"
+            id="address"
+            name="address"
+            [(ngModel)]="subNodeObj.address"
+          />
+        </td>
+        <td>
+          <select
+            class="custom-select"
+            id="userPackage"
+            name="userPackage"
+            [(ngModel)]="subNodeObj.packageId"
+          >
+            <option
+              *ngFor="let package of packagesItems"
+              [value]="package.packageId"
+            >
+              {{ package.packageName }} - {{ package.cost }}
+            </option>
+          </select>
+        </td>
+        <td>
+          <input
+            type="text"
+            class="form-control"
+            id="notes"
+            name="notes"
+            [(ngModel)]="subNodeObj.notes"
+          />
+        </td>
+
+        <td style="width: 5%">
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>line_weight</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <ng-template matMenuContent>
+              <button mat-menu-item (click)="selectContact($event, subNodeObj)">
+                <mat-icon>how_to_reg</mat-icon>اختر
+              </button>
+              <button mat-menu-item (click)="deleteContact($event, subNodeObj)">
+                <mat-icon>delete_sweep</mat-icon>حذف
+              </button>
+            </ng-template>
+          </mat-menu>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  
+</div>

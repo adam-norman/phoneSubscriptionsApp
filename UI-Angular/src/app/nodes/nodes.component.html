@@ -1,0 +1,49 @@
+<button (click)='changeAddNewToggler()' [hidden]="!AddNewToggler" mat-mini-fab color="primary"><mat-icon>control_point</mat-icon></button>
+<app-create-node [hidden]="AddNewToggler" (reload)="nodesLoad()"></app-create-node>
+<button (click)='changeAddNewToggler()' [hidden]="AddNewToggler" mat-mini-fab color="primary"><mat-icon>arrow_upward</mat-icon></button>
+<hr>
+<div class="container" style="margin-top: 70px; direction: rtl; text-align: right;">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>كود</th>
+          <th>اسم الموزع</th>
+          <th>الرقم القومى</th>
+          <th>المحمول</th>
+          <th>العنوان</th>
+          <th>نوع الباقة</th>
+          <th>ملاحظات</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let nodeObj of nodesList">
+          <td>{{ nodeObj.nodeId }}</td>
+          <td> <input type="text" class="form-control" id="distributerName" name="distributerName" [(ngModel)]="nodeObj.distributerName" ></td>
+          <td> <input type="text" class="form-control" id="nid" name="nid" [(ngModel)]="nodeObj.nid" ></td>
+          <td>  <input type="text" class="form-control" id="mobile" name="mobile" [(ngModel)]="nodeObj.mobile" ></td>
+          <td>  <input type="text" class="form-control" id="address" name="address" [(ngModel)]="nodeObj.address" ></td>
+          <td> 
+          <select class="custom-select" id="userPackage" name="userPackage" [(ngModel)]="nodeObj.userPackage">
+            <option *ngFor="let package of packagesItems" [value]="package.packageId">
+              {{package.packageName}} - {{package.cost}} </option>
+            </select>
+          </td>
+          <td> <input type="text" class="form-control" id="notes" name="notes" [(ngModel)]="nodeObj.notes" ></td>
+          
+          <td style="width: 5%">
+            <button  mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>line_weight</mat-icon>
+              </button>
+            <mat-menu #menu="matMenu">
+              <ng-template matMenuContent>
+                <button  mat-menu-item  (click)="saveContact($event,nodeObj)"><mat-icon>save</mat-icon>حفظ</button>
+                <button  mat-menu-item  (click)="deleteContact($event,nodeObj)"><mat-icon>delete_sweep</mat-icon>حذف</button>
+              </ng-template>
+            </mat-menu>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

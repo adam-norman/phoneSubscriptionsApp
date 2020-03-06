@@ -1,0 +1,25 @@
+table {
+    width: 100%;
+  }
+  
+  th.mat-sort-header-sorted {
+    color: black;
+  }
+  mat-table{
+    margin-top: 50px;;
+  }
+  .mat-cell {
+    font-size: 14px;
+    min-height: 48px;
+    text-align: center;
+    direction: rtl;
+    border-right: 1px solid black;
+}
+mat-header-cell {
+  font-size: 14px;
+  min-height: 48px;
+  text-align: center;
+  direction: rtl;
+  border-right: 1px solid black;
+}
+ 

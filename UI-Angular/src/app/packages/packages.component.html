@@ -1,0 +1,26 @@
+<button (click)='changeAddNewToggler()' [hidden]="!AddNewToggler" mat-mini-fab color="primary"><mat-icon>control_point</mat-icon></button>
+<div style="direction: rtl; text-align: right;">
+  <div  [hidden]="AddNewToggler">
+    <h2>اضافة الباقات</h2>
+    <form #packagesForm='ngForm' novalidate (ngSubmit)="onSubmit(packagesForm)">
+        
+        <div class="form-group row">
+          <label for="packageName" class="col-sm-2 col-form-label">اسم الباقة</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="packageName" name="packageName" [(ngModel)]="packageObj.packageName" >
+          </div>
+        </div>
+        <div class="form-group row">
+            <label for="cost" class="col-sm-2 col-form-label">سعر الباقة</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="cost" name="cost" [(ngModel)]="packageObj.cost" >
+            </div>
+          </div>
+    
+          <button type="submit" class="btn btn-primary">حفظ</button>
+
+      </form>
+    </div>
+  </div>
+  <button (click)='changeAddNewToggler()' [hidden]="AddNewToggler" mat-mini-fab color="primary"><mat-icon>arrow_upward</mat-icon></button>
+      <app-packages-list></app-packages-list>

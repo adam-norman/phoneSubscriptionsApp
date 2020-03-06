@@ -1,0 +1,69 @@
+<div style="direction: rtl; text-align: right;">
+    <h2>بيانات العضو</h2>
+    <form #subNnodesForm='ngForm'   novalidate (ngSubmit)="onSubmit()">
+        
+        <div class="form-group row">
+          <label for="fullName" class="col-sm-2 col-form-label">اسم العميل</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="fullName" name="fullName" [(ngModel)]="subNodeObj.fullName" >
+          </div>
+        </div>
+        <div class="form-group row">
+            <label for="nid" class="col-sm-2 col-form-label">الرقم القومى</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="nid" name="nid" [(ngModel)]="subNodeObj.nid" >
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="address" class="col-sm-2 col-form-label">العنوان </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="address" name="address" [(ngModel)]="subNodeObj.address" >
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="startDate" class="col-sm-2 col-form-label"> تاريخ الاشتراك</label>
+            <div class="col-sm-10">
+              <!-- <input type="text" class="form-control" id="startDate"  > -->
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker" name="startDate" [(ngModel)]="subNodeObj.startDate" placeholder="اختر تاريخ الاشتراك">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="phone" class="col-sm-2 col-form-label"> المحمول</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="subNodeObj.phone" >
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="userPackage" class="col-sm-2 col-form-label">نوع الباقة </label>
+            <div class="col-sm-10">
+                <select class="custom-select" id="packageId" name="packageId" [(ngModel)]="subNodeObj.packageId">
+                    <option value="-1">اختر نوع الباقة</option>
+                    <option *ngFor="let package of packagesItems" [value]="package.packageId">
+                      {{package.packageName}} - {{package.cost}} </option>
+                    </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="userPackage" class="col-sm-2 col-form-label">المجموعة</label>
+            <div class="col-sm-10">
+                <select class="custom-select" id="userPackage" name="userPackage" [(ngModel)]="subNodeObj.nodeId">
+                    <option value="-1">اختر نوع الباقة</option>
+                    <option *ngFor="let uNode of nodesList" [value]="uNode.nodeId">
+                      {{uNode.distributerName}} </option>
+                    </select>
+            </div>
+          </div>          
+          <div class="form-group row">
+            <label for="notes" class="col-sm-2 col-form-label">الملاحظات </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="notes" name="notes" [(ngModel)]="subNodeObj.notes" >
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">حفظ</button>
+
+      </form>
+</div>

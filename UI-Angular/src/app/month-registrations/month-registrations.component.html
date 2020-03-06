@@ -1,0 +1,132 @@
+<div style="direction: rtl; text-align: right;">
+  <div style="white-space:nowrap">
+    <label for="nodeId" class="col-sm-2 col-form-label"
+      >اختر الموزع/المجموعة</label
+    >
+    <select
+      class="custom-select d-block w-100"
+      placeholder="اختر الموزع/المجموعة"
+      id="nodeId"
+      [(ngModel)]="nodeId"
+      (ngModelChange)="onOptionsSelected()"
+      name="nodeId"
+    >
+      <option value="0">الكل</option>
+      <option *ngFor="let uNode of nodesList" [value]="uNode.nodeId">
+        {{ uNode.distributerName }}
+      </option>
+    </select>
+  </div>
+<div class="ng-container" [hidden]="showColPreferences">
+<div *ngFor="let col of colPrefDialogData">
+<mat-checkbox [(ngModel)]="col.val"> {{col.name}}</mat-checkbox>
+</div>
+<button mat-button (click)="savePreferences()">حفظ</button>
+
+</div>
+
+  <table mat-table [dataSource]="subNodesList">
+    <ng-container matColumnDef="fullName" sticky>
+      <th mat-header-cell *matHeaderCellDef>الاسم</th>
+      <td mat-cell *matCellDef="let element">{{ element.fullName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef>التليفون</th>
+      <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cjan">
+      <th mat-header-cell *matHeaderCellDef>يناير</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox [(ngModel)]="element.cjan"> </mat-checkbox>
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="cfeb">
+      <th mat-header-cell *matHeaderCellDef>فبراير</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox [(ngModel)]="element.cfeb"> </mat-checkbox>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="cmar">
+      <th mat-header-cell *matHeaderCellDef>مارس</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox [(ngModel)]="element.cmar"> </mat-checkbox>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="capr">
+      <th mat-header-cell *matHeaderCellDef>ابريل</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox [(ngModel)]="element.capr"> </mat-checkbox>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="cmay">
+      <th mat-header-cell *matHeaderCellDef>مايو</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox [(ngModel)]="element.cmay"> </mat-checkbox>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="cjun">
+      <th mat-header-cell *matHeaderCellDef>يونيو</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox [(ngModel)]="element.cjun"> </mat-checkbox>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="cjul">
+      <th mat-header-cell *matHeaderCellDef>يوليو</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox [(ngModel)]="element.cjul"> </mat-checkbox>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="caug">
+      <th mat-header-cell *matHeaderCellDef>اغسطس</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox [(ngModel)]="element.caug"> </mat-checkbox>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="csep">
+      <th mat-header-cell *matHeaderCellDef>سبتمبر</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox [(ngModel)]="element.csep"> </mat-checkbox>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="coct">
+      <th mat-header-cell *matHeaderCellDef>اكتوبر</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox [(ngModel)]="element.coct"> </mat-checkbox>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="cnov">
+      <th mat-header-cell *matHeaderCellDef>نوفمبر</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox [(ngModel)]="element.cnov"> </mat-checkbox>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="cdec">
+      <th mat-header-cell *matHeaderCellDef>ديسمبر</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox [(ngModel)]="element.cdec"> </mat-checkbox>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="save" stickyEnd>
+      <th mat-header-cell *matHeaderCellDef>
+        <button  mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>line_weight</mat-icon>
+              </button>
+        <mat-menu #menu="matMenu">
+              <ng-template matMenuContent>
+                <button  mat-menu-item  (click)="confirmDialog()"><mat-icon>delete_sweep</mat-icon>مسح تسجيلات جميع الشهور لكل المشتركين</button>
+                <button  mat-menu-item  (click)="showPreferences()"><mat-icon>filter_list</mat-icon>اختيار الشهورالمعروضة </button>
+              </ng-template>
+            </mat-menu>
+        </th>
+      <td mat-cell (click)="save(element)" *matCellDef="let element">
+        <mat-icon>save</mat-icon>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

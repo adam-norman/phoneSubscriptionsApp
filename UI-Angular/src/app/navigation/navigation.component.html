@@ -1,0 +1,22 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" color="drawer">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span><img  style="width: auto;height:50px;" src="./assets/images/logo.png"></span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-sidenav-container  class="example-container">
+    <mat-sidenav #drawer mode="side"  opened role="navigation">
+      <mat-nav-list>
+        <a mat-list-item routerLink='registrations'><mat-icon>how_to_reg</mat-icon>&nbsp;&nbsp;التسجيل</a>
+        <a mat-list-item routerLink='subNodes'><mat-icon>group</mat-icon>&nbsp;&nbsp;اعضاء المجموعات</a>
+        <a mat-list-item routerLink='add-subNodes'><mat-icon>person_add</mat-icon>&nbsp;&nbsp;اضافة عضو لمجموعة</a>
+        <a mat-list-item routerLink='nodes'><mat-icon>dialpad</mat-icon>&nbsp;&nbsp;المجموعات</a> 
+        <a mat-list-item routerLink='add-packages'><mat-icon>multiline_chart</mat-icon>&nbsp;&nbsp; الباقات </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

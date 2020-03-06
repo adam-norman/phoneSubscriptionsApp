@@ -1,0 +1,23 @@
+export class SubNodes {
+    constructor(public fullName?: string,
+        public phone?: string,
+        public nid?: string,
+        public startDate?: Date,
+        public address?: string,
+        public notes?: string,
+        public packageId?: number,
+        public nodeId?: number,
+        public subNodeId?: number,
+        public cjan?: number,
+        public cfeb?: number,
+        public cmar?: number,
+        public capr?: number,
+        public cmay?: number,
+        public cjun?: number,
+        public cjul?: number,
+        public caug?: number,
+        public csep?: number,
+        public coct?: number,
+        public cnov?: number,
+        public cdec?: number) { }
+}
